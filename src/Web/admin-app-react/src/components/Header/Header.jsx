@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <div className={styles.container}>
             <div className={styles.navLeft}>
-                <NavLink to='/' className={`${styles.navLink} ${pathname === '/' ? styles.active : ''}`} >
+                <NavLink to='/profile' className={`${styles.navLink} ${pathname === '/' ? styles.active : ''}`} >
                     Users
                 </NavLink>
                 <NavLink to="/categories" className={`${styles.navLink} ${pathname === '/categories' ? styles.active : ''}`}>

@@ -7,6 +7,7 @@ import Achievement from '../Achievement/Achievement';
 import avatarImg from '../../assets/avatar.png';
 import experienceImg from '../../assets/experience.png';
 import { isEqual, uniq } from "lodash";
+import { fakeApiUserProfileResult } from "../../fakedata/fakeProfile"
 
 export default function DisplayAdminInfo() {
 
@@ -60,7 +61,20 @@ export default function DisplayAdminInfo() {
                 })
                 setAboutMe({ "aboutMe": res.data.aboutMe });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+                setUserInfo(fakeApiUserProfileResult);
+                if (fakeApiUserProfileResult.avatar != null) setAvatar(fakeApiUserProfileResult.avatar.uri);
+                setUserInfoNeedUpdate({
+                    "email": fakeApiUserProfileResult.email,
+                    "phonenumber": fakeApiUserProfileResult.phonenumber,
+                    "fullName": fakeApiUserProfileResult.fullName,
+                    "title": fakeApiUserProfileResult.title,
+                    "location": fakeApiUserProfileResult.location,
+                    "dateOfBirth": fakeApiUserProfileResult.dateOfBirth
+                })
+                setAboutMe({ "aboutMe": fakeApiUserProfileResult.aboutMe });
+            });
     }
 
     // update basic info

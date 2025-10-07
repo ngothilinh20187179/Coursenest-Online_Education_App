@@ -16,6 +16,7 @@ import ModalEditCate from "../ModalEditCate";
 import ModalAddTopic from "../ModalAddTopic";
 import ModalDeleteTopic from "../ModalDeleteTopic";
 import ModalEditTopic from "../ModalEditTopic";
+import {fakeApiListResult} from "../../fakedata/fakeCategories"
 
 export default function ListCategories() {
 
@@ -57,7 +58,10 @@ export default function ListCategories() {
             .then((res) => {
                 setData(res.data);
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setData(fakeApiListResult);
+            })
             .finally(() => setIsLoading(false))
     }
 
@@ -155,28 +159,28 @@ export default function ListCategories() {
                                                         </div>
                                                     </div>
                                                     {(open == sub.subcategoryId) && (
-                                                    <div className={styles.listTopics}>
-                                                        <div>
-                                                        {
-                                                            sub.topics && sub.topics.map((topic, index) => {
-                                                                return (
-                                                                    <div key={topic.id}>
-                                                                        {index != 0 && (
-                                                                            <hr className={styles.deviderTopic} />
-                                                                        )}
-                                                                        <div className={styles.topic}>
-                                                                            <p>{topic.content}</p>
-                                                                            <div className={styles.topicActions}>
+                                                        <div className={styles.listTopics}>
+                                                            <div>
+                                                                {
+                                                                    sub.topics && sub.topics.map((topic, index) => {
+                                                                        return (
+                                                                            <div key={topic.id}>
+                                                                                {index != 0 && (
+                                                                                    <hr className={styles.deviderTopic} />
+                                                                                )}
+                                                                                <div className={styles.topic}>
+                                                                                    <p>{topic.content}</p>
+                                                                                    <div className={styles.topicActions}>
                                                                                 <img title="edit topic" src={editIcon} alt="" onClick={() => handleEditTopic(topic)}/>
-                                                                                <img title="delete topic" src={deleteIcon} alt="" onClick={() => handleClickDelTopic(topic)} />
+                                                                                        <img title="delete topic" src={deleteIcon} alt="" onClick={() => handleClickDelTopic(topic)} />
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     )}
                                                 </div>
                                             )

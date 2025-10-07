@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { fakeApiListResult } from '../../fakedata/fakeCourses';
 
 export default function ManageCourses() {
 
@@ -30,11 +31,15 @@ export default function ManageCourses() {
                 setListCourses(res.data.queried);
                 setCountCourses(res.data.total)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                console.log(err)
+                setListCourses(fakeApiListResult.queried);
+                setCountCourses(fakeApiListResult.total);
+            })
             .finally(() => setIsLoading(false))
     };
 
-    
+
     function getFilteredListCourse() {
         if (!keyword) {
             return listCourses;
@@ -88,8 +93,8 @@ export default function ManageCourses() {
         { value: '50', text: '50 courses/page' },
         { value: '100', text: '100 courses/page' }
     ];
-    
-    if(isLoading) return <LoadingSpinner />
+
+    if (isLoading) return <LoadingSpinner />
 
     return (
         <div className={styles.container}>

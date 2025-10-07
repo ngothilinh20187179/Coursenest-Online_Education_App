@@ -22,7 +22,7 @@ function App() {
 
     let logged = false;
 
-    localStorage.getItem("accessToken") ? logged=true : logged=false;
+    localStorage.getItem("accessToken") ? logged = true : logged = false;
 
     const path = useLocation().pathname;
     const location = path.split('/')[1];
@@ -35,23 +35,23 @@ function App() {
                     <Route path="login" element={<Login setAccessToken={setToken}/>} />
                 </Routes>
             </>}
-            {logged && 
-            <div className={styles[`${location}`]}>
-                <Header />
-                <Outlet />
-                <Routes>
-                    <Route exact path="/" element={<ManageUsers />} />
+            {!logged &&
+                <div className={styles[`${location}`]}>
+                    <Header />
+                    <Outlet />
+                    <Routes>
+                        <Route exact path="/" element={<ManageUsers />} />
                     <Route exact path="/profile" element={<DisplayAdminInfo/>} />
-                    <Route exact path="/categories" element={<ListCategories />} />
-                    <Route exact path="/courses" element={<ManageCourses />} />
-                    <Route exact path="/courses/:id" element={<UnapprovedCourse />} >
-                        <Route index element={<Units />} />
-                        <Route path="material/:materialId" element={<Material />} />
-                        <Route path="exam/:examId" element={<Exam />} />
-                    </Route>
-                    <Route path="*" element={<p>Path not resolved</p>} />
-                </Routes>
-            </div>}
+                        <Route exact path="/categories" element={<ListCategories />} />
+                        <Route exact path="/courses" element={<ManageCourses />} />
+                        <Route exact path="/courses/:id" element={<UnapprovedCourse />} >
+                            <Route index element={<Units />} />
+                            <Route path="material/:materialId" element={<Material />} />
+                            <Route path="exam/:examId" element={<Exam />} />
+                        </Route>
+                        <Route path="*" element={<p>Path not resolved</p>} />
+                    </Routes>
+                </div>}
         </div>
     );
 }

@@ -30,7 +30,7 @@ export default function Login(props) {
             .then((res) => {
                 return res.data;
             })
-            .then(async (res) => { 
+            .then(async (res) => {
                 const token = res.accessToken;
                 const getRoles = await instance.get(`roles/me`, {
                     headers: {
@@ -42,11 +42,13 @@ export default function Login(props) {
                     setAccessToken(token);
                     localStorage.setItem('userId', res.userId);
                     window.location.href = '/'
-                }          
+                }
             })
             .catch((err) => {
                 console.log("fail:", err);
-                alert("The Username or Password is Incorrect");
+                // alert("The Username or Password is Incorrect");
+                alert("Something wrong! Use Fake data to review");
+                window.location.href = '/profile'
             });
     }
 
