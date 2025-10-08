@@ -110,7 +110,7 @@ export default function Header(props) {
                         <div className={styles.searchInput}>
                             <div className="input-group">
                                 <input
-                                    className="form-control border-end-0 border rounded-pill"
+                                    className="form-control border-end-1 border rounded-pill"
                                     type="search"
                                     placeholder="search"
                                     id="example-search-input"

@@ -7,16 +7,18 @@ import styles from './Topic.module.scss';
 import { useParams, useNavigate } from 'react-router';
 import images from '~/assets/images';
 import config from '~/config';
+import {mockCountCourse, mockCourses} from "../../mockupData/courses"
+import {mockAllTopicsBySub, mockTopicSiblings, mockTopicDetails} from "../../mockupData/topics"
 
 export default function Topic() {
     const { id } = useParams();
-    const [topic, setTopic] = useState({});
-    const [allTopicsBySub, setAllTopicsBySub] = useState([]);
-    const [topicSiblings, setTopicSiblings] = useState([]);
+    const [topic, setTopic] = useState(mockTopicDetails);
+    const [allTopicsBySub, setAllTopicsBySub] = useState(mockAllTopicsBySub);
+    const [topicSiblings, setTopicSiblings] = useState(mockTopicSiblings);
     const [subcate, setSubcate] = useState();
 
-    const [listCourses, setListCourses] = useState([]);
-    const [countCourse, setCountCourse] = useState();
+    const [listCourses, setListCourses] = useState(mockCourses);
+    const [countCourse, setCountCourse] = useState(mockCountCourse);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(1);
 
@@ -82,7 +84,7 @@ export default function Topic() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.navigation}>
+            {/* <div className={styles.navigation}>
                 <h4>{subcate}</h4>
                 <span className={styles.splitContent}></span>
                 <div className={styles.navigationItems}>
@@ -104,16 +106,17 @@ export default function Topic() {
                 <div className={styles.arrowRight} onClick={() => handleClickArrowRight()}>
                     <img src={images.arrowRight} alt="" />
                 </div>
-            </div>
+            </div> */}
 
             <div>
                 <h2>{topic.content}</h2>
-                <p>
+                <p>{topic.description}</p>
+                {/* <p>
                     {topic.content} related to <span style={{ color: '#C677FC' }}>{subcate}</span>
-                </p>
+                </p> */}
             </div>
 
-            <h4>{topic.content} Student also learn</h4>
+            <h4>{topic.content} Students also learn</h4>
             <div className={styles.topicSiblings}>
                 {topicSiblings &&
                     topicSiblings.map((topicSibling) => {

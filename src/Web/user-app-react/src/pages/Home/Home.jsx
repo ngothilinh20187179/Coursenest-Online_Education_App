@@ -9,7 +9,7 @@ export default function Home(props) {
         <div className={styles.container}>
             <div className={styles.slogan}>
                 <h1 className={styles.title}># ONLINE COURSE EXAM</h1>
-                <span className={styles.subTitle}>BY TEAM 3</span>
+                {/* <span className={styles.subTitle}>BY TEAM 3</span> */}
             </div>
             {!logged && (
                     <div className={styles.content}>

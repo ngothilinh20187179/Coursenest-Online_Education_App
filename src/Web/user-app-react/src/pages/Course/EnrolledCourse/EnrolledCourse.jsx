@@ -11,14 +11,15 @@ import Units from "../Units/Units";
 import { useNavigate } from "react-router";
 import _ from "lodash";
 import ModalConfirm from "../Exam/ModalConfirm";
+import {mockCourseDetail, mockListLessons, mockEnrollement} from "../../../mockupData/courses"
 
 export default function EnrolledCourse() {
     const { enrollementId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const tokenStr = localStorage.getItem('accessToken');
-    const [enrollement, setEnrollement] = useState({});
-    const [courseInfo, setCourseInfo] = useState({});
-    const [listLessons, setListLessons] = useState([]);
+    const [enrollement, setEnrollement] = useState(mockEnrollement);
+    const [courseInfo, setCourseInfo] = useState(mockCourseDetail);
+    const [listLessons, setListLessons] = useState(mockListLessons);
     const [show, setShow] = useState(false);
     const [unit, setUnit] = useState({});
     const pathname = useLocation().pathname;

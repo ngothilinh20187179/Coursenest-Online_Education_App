@@ -3,14 +3,16 @@ import { useEffect, useState } from 'react';
 import AllCoursesByTopic from '~/components/AllCoursesByTopic/AllCoursesByTopic';
 import config from '~/config';
 import styles from "./InterestedTopics.module.scss"
+import {mockCourses} from "../../mockupData/courses"
+import {mockAllTopicsBySub} from "../../mockupData/topics"
 
 export default function InterestedTopics(props) {
     const {logged} = props;
 
     const userId = localStorage.getItem('userId');
-    const [topics, setTopics] = useState([]);
+    const [topics, setTopics] = useState(mockAllTopicsBySub);
     const [activeTopic, setActiveTopic] = useState();
-    const [listCourses, setListCourses] = useState([]);
+    const [listCourses, setListCourses] = useState(mockCourses);
 
     const getInterestTopics = () => {
         axios
@@ -85,7 +87,8 @@ export default function InterestedTopics(props) {
                         </div>
                         <div>
                             <h3 className={styles.heading}>Top Courses</h3>
-                            <AllCoursesByTopic listCourses={listCourses.queried} logged={logged}/>
+                            {/* <AllCoursesByTopic listCourses={listCourses.queried} logged={logged}/> */}
+                            <AllCoursesByTopic listCourses={listCourses} logged={logged}/>
                         </div>
         </div>
     );

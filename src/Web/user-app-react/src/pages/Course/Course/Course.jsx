@@ -8,13 +8,14 @@ import config from '~/config';
 import axios from 'axios';
 import { Button } from "react-bootstrap";
 import getNumberOfDays from "~/helper/getNumberOfDays";
+import {mockCourseDetail, mockListLessons} from "../../../mockupData/courses"
 
 export default function Course(props) {
     const { logged } = props;
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [courseInfo, setCourseInfo] = useState({});
-    const [lessonInfo, setLessonInfo] = useState([]);
+    const [courseInfo, setCourseInfo] = useState(mockCourseDetail);
+    const [lessonInfo, setLessonInfo] = useState(mockListLessons);
     const tokenStr = localStorage.getItem('accessToken');
 
     useEffect(() => {
@@ -35,9 +36,10 @@ export default function Course(props) {
     const navigate = useNavigate();
     const handleSeeCourseDetail = async () => {
         if (!logged) {
-            if (window.confirm("You need to login to see this course!")) {
-                navigate(`/sign-in`);
-            }
+            // if (window.confirm("You need to login to see this course!")) {
+            //     navigate(`/sign-in`);
+            // }
+            navigate(`/sign-in`);
         }
         else {
             // nếu course free thì 
@@ -151,6 +153,26 @@ export default function Course(props) {
                     <h3>{courseInfo.title}</h3>
                     <h5 style={{ paddingTop: 20 }}>{courseInfo.description}</h5>
                     <p style={{ paddingTop: 20 }}>{courseInfo.about}</p>
+                </div>
+                <div>
+                    {lessonInfo && lessonInfo.map((lesson) => {
+                        return (
+                            <>
+                                <div key={lesson.lessonId} style={{ marginBottom: 20 }}>
+                                    <div
+                                        style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                                    >
+                                        <h6>{lesson.title}</h6>
+                                    </div>
+                                    {lesson.lessonId && lesson.units && lesson.units.map((unit) => (
+                                        <div key={unit.unitId} style={{ paddingLeft: 20, marginTop: 12 }}>
+                                            <p>{unit.title} ( {unit.requiredMinutes} mins )</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        )
+                    })}
                 </div>
             </div>
         </div>

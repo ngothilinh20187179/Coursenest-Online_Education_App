@@ -5,13 +5,14 @@ import config from "~/config";
 import LoadingSpinner from "~/components/LoadingSpinner/LoadingSpinner";
 import Button from "react-bootstrap/Button";
 import Countdown from "react-countdown";
+import { mockExamDataUnit107 } from "../../../mockupData/courses"
 
 export default function Exam() {
     const { examId, enrollementId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [exam, setExam] = useState({});
+    const [exam, setExam] = useState(mockExamDataUnit107);
     const tokenStr = localStorage.getItem('accessToken');
-    const [timeOut, setTimeout] = useState(0);
+    const [timeOut, setTimeout] = useState(exam.requiredMinutes * 60000);
 
     useEffect(() => {
         setIsLoading(true);
@@ -60,7 +61,10 @@ export default function Exam() {
                             {(question.choices).map((choice) => {
                                 return (
                                     <div key={choice.choiceId} style={{marginTop: 10}}>
-                                        <label><input type="radio" name={question.questionId}/> {choice.content}</label>
+                                        <label>
+                                            <input type="radio" name={question.questionId}/> 
+                                            <span style={{ marginLeft: '10px' }}  dangerouslySetInnerHTML={{ __html: choice.content }}></span>
+                                        </label>
                                     </div>
                                 )
                             })}

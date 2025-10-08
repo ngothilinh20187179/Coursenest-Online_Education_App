@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import config from '~/config';
+import { mockCategories } from '../../mockupData/categories';
 
 export default function Layout(props) {
     const {logged, isInstructor, isPublisher} = props;
@@ -14,7 +15,7 @@ export default function Layout(props) {
     const path = useLocation().pathname;
     const location = path.split('/')[1];
 
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(mockCategories);
     const [subcategories, setSubcategories] = useState([]);
     const [topics, setTopics] = useState([]);
     const [isShownCategory, setIsShownCategory] = useState(false);

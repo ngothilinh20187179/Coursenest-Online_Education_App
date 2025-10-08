@@ -10,6 +10,8 @@ import axios from 'axios';
 import { isEqual, uniq } from "lodash";
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner';
 
+import {mockUserInfoFull} from "../../mockupData/userInfo"
+
 export default function Profile() {
 
     const userId = localStorage.getItem("userId")
@@ -17,7 +19,7 @@ export default function Profile() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState(mockUserInfoFull);
     const [userInfoNeedUpdate, setUserInfoNeedUpdate] = useState({});
     const [currentInfo, setCurrentInfo] = useState({});
     const [changedInfo, setChangedInfo] = useState({});
@@ -39,7 +41,7 @@ export default function Profile() {
     const [showModalDeleteExperience, setShowModalDeleteExperience] = useState(false);
 
 
-    const [avatar, setAvatar] = useState(avatarImg);
+    const [avatar, setAvatar] = useState(mockUserInfoFull.avatar.uri);
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState();
 

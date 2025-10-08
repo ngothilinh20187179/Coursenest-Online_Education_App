@@ -4,11 +4,12 @@ import LoadingSpinner from "~/components/LoadingSpinner/LoadingSpinner";
 import { useState, useEffect } from "react";
 import config from "~/config";
 import Button from "react-bootstrap/Button";
+import {mockMaterialUnit101} from "../../../mockupData/courses"
 
 export default function Material() {
     const { materialId, enrollementId } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [material, setMaterial] = useState({});
+    const [material, setMaterial] = useState(mockMaterialUnit101);
     const tokenStr = localStorage.getItem('accessToken');
 
     useEffect(() => {
@@ -50,7 +51,8 @@ export default function Material() {
         <div>
             <h3>{material.title}</h3>
             <h5 style={{color: "red", marginBottom: 20}}>{material.requiredMinutes} minutes</h5>
-            <p>{material.content}</p>
+            {/* <p>{material.content}</p> */}
+            <div dangerouslySetInnerHTML={{ __html: material.content }} />
             <Button 
                 style={{marginTop: 20, marginLeft: 770}} variant="success"
                 onClick={handlePostMaterial}>

@@ -17,7 +17,7 @@ export default function Units(props) {
                                     <div key={unit.unitId} style={{paddingLeft: 20, marginTop: 12}}>
                                         <p  onClick={() => handleOpenDetailUnit(unit)}
                                             style={{cursor: "pointer"}}>
-                                            <strong>{unit.title}</strong> ( {unit.requiredMinutes} mins )
+                                            {unit.title} ( {unit.requiredMinutes} mins )
                                         </p>
                                     </div>
                                 ))}

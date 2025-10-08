@@ -4,11 +4,12 @@ import styles from './MyCourses.module.scss';
 import config from '~/config';
 import AllEnrolledCourses from '~/components/AllEnrolledCourses/AllEnrolledCourses';
 import LoadingSpinner from '~/components/LoadingSpinner/LoadingSpinner';
+import { mockInProgressCourses, mockCompletedCourses } from "../../mockupData/courses"
 
 export default function MyCourses() {
     const tokenStr = localStorage.getItem('accessToken');
-    const [inProgressCourses, setInProgressCourses] = useState([]);
-    const [completedCourses, setCompletedCourses] = useState([]);
+    const [inProgressCourses, setInProgressCourses] = useState(mockInProgressCourses);
+    const [completedCourses, setCompletedCourses] = useState(mockCompletedCourses);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {

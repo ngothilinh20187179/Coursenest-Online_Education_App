@@ -13,7 +13,7 @@ export default function Landing() {
             <div className={styles.nav}>
                 <div className={styles.navleft}>
                     <img src={logowhite} className={styles.logowhite} alt="" />
-                    <Link to="/home" className={`textlink ${styles.home}`}>
+                    <Link to="/" className={`textlink ${styles.home}`}>
                         <p>Home</p>
                     </Link>
                 </div>

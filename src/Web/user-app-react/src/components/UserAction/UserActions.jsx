@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import config from '~/config';
 import images from '~/assets/images';
 import styles from './UserAction.module.scss';
+import {mockUserInfoFull} from "../../mockupData/userInfo"
 
 export default function UserActions() {
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState(mockUserInfoFull);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSignOut = () => {
